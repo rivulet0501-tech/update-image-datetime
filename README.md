@@ -33,6 +33,9 @@ find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | nl -ba > 
 **适用格式：**
 - `IMG_YYYYMMDD_HHMMSS.jpg`
 - `VIDEO_YYYYMMDD_HHMMSS.mp4`
+- `IMG_<13位Unix时间戳>_YYYYMMDD_HHMMSS.jpg`（优先从本地时间部分提取）
+
+**示例：**`IMG_1593765346453_20200703_163546.png` → `2020:07:03 16:35:46`
 
 ### `update_myxj.sh`
 
@@ -59,6 +62,7 @@ find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | nl -ba > 
 
 | 规则 | 示例文件名 | 提取结果 |
 |------|-----------|---------|
+| `beauty_YYYYMMDDHHMMSS.jpg` | `beauty_20181027140451.jpg` | `2018:10:27 14:04:51` |
 | `Cover_YYYYMMDDHHMMSS[ms].jpg` | `Cover_20190526160213186.jpg` | `2019:05:26 16:02:13` |
 | `MEITU_YYYYMMDD_HHMMSS[ms].jpg` | `MEITU_20250531_113309902.jpg` | `2025:05:31 11:33:09` |
 | `april_YYYY-MM-DD-HH-MM-SS-ms.jpg` | `april_2019-08-01-22-26-18-236.jpg` | `2019:08:01 22:26:18` |

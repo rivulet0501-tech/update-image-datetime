@@ -4,8 +4,8 @@
 # 处理截图命名格式的图片，从文件名中提取拍摄时间。
 #
 # 适用规律：
-#   ScreenShot_YYYYMMDD-HHMMSS.png
-#   例：ScreenShot_20171015-211119.png  →  2017:10:15 21:11:19
+#   Screenshot_YYYYMMDD-HHMMSS.png
+#   例：Screenshot_20171015-211119.png  →  2017:10:15 21:11:19
 #
 # 用法：
 #   bash update_screenshot.sh [imagelist.txt]

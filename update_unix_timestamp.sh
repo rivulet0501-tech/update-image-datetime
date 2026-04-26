@@ -117,7 +117,7 @@ while IFS= read -r line; do
     if [[ -n "$TS" ]]; then
         DATETIME="$(ts_to_datetime "$TS")"
         echo "设置 $filepath  =>  $DATETIME  (ts=$TS)"
-        exiftool -overwrite_original -DateTimeOriginal="$DATETIME" "$filepath"
+        exiftool -overwrite_original -DateTimeOriginal="$DATETIME" -FileModifyDate="$DATETIME" "$filepath"
         (( count++ )) || true
     else
         (( skip++ )) || true

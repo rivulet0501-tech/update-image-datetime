@@ -72,7 +72,7 @@ while IFS= read -r line; do
 
     if [[ -n "$DATETIME" ]]; then
         echo "设置 $filepath  =>  $DATETIME"
-        exiftool -overwrite_original -DateTimeOriginal="$DATETIME" "$filepath"
+        exiftool -overwrite_original -DateTimeOriginal="$DATETIME" -FileModifyDate="$DATETIME" "$filepath"
         (( count++ )) || true
     else
         (( skip++ )) || true

@@ -45,7 +45,7 @@ while IFS= read -r line; do
         SEC="${BASH_REMATCH[7]}"
         DATETIME="${YEAR}:${MON}:${DAY} ${HOUR}:${MIN}:${SEC}"
         echo "设置 $filepath  =>  $DATETIME"
-        exiftool -overwrite_original -DateTimeOriginal="$DATETIME" "$filepath"
+        exiftool -overwrite_original -DateTimeOriginal="$DATETIME" -FileModifyDate="$DATETIME" "$filepath"
         (( count++ )) || true
     else
         (( skip++ )) || true

@@ -33,6 +33,9 @@ find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | nl -ba > 
 **适用格式：**
 - `IMG_YYYYMMDD_HHMMSS.jpg`
 - `VIDEO_YYYYMMDD_HHMMSS.mp4`
+- `IMG_<13位Unix时间戳>_YYYYMMDD_HHMMSS.jpg`（优先从本地时间部分提取）
+
+**示例：**`IMG_1593765346453_20200703_163546.png` → `2020:07:03 16:35:46`
 
 ### `update_myxj.sh`
 
@@ -59,6 +62,7 @@ find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | nl -ba > 
 
 | 规则 | 示例文件名 | 提取结果 |
 |------|-----------|---------|
+| `beauty_YYYYMMDDHHMMSS.jpg` | `beauty_20181027140451.jpg` | `2018:10:27 14:04:51` |
 | `Cover_YYYYMMDDHHMMSS[ms].jpg` | `Cover_20190526160213186.jpg` | `2019:05:26 16:02:13` |
 | `MEITU_YYYYMMDD_HHMMSS[ms].jpg` | `MEITU_20250531_113309902.jpg` | `2025:05:31 11:33:09` |
 | `april_YYYY-MM-DD-HH-MM-SS-ms.jpg` | `april_2019-08-01-22-26-18-236.jpg` | `2019:08:01 22:26:18` |
@@ -82,6 +86,15 @@ find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | nl -ba > 
 | `UUID(36位)TIMESTAMP(13位).jpeg` | `97d5366a-...-8024f33438211748587257913.jpeg` | UUID 拼接毫秒时间戳 |
 | `TIMESTAMP_pic.jpg` | `1557323094264_pic.jpg` | 毫秒时间戳 + `_pic` 后缀 |
 | 含13位时间戳的任意文件名 | `5804835_CP0FEDBMX3_1554825442402-v2-0.jpg` | 兜底规则 |
+
+### `update_screenshot.sh`
+
+处理截图命名格式的图片。
+
+**适用格式：**
+- `ScreenShot_YYYYMMDD-HHMMSS.png`
+
+**示例：**`ScreenShot_20171015-211119.png` → `2017:10:15 21:11:19`
 
 ### `update_dir_date.sh`
 
@@ -108,6 +121,7 @@ find /your/photo/dir -type f -iname "*.jpg" | nl -ba > imagelist.txt
 bash update_android_img.sh imagelist.txt
 bash update_myxj.sh imagelist.txt
 bash update_selfiecity.sh imagelist.txt
+bash update_screenshot.sh imagelist.txt
 bash update_named_datetime.sh imagelist.txt
 bash update_unix_timestamp.sh imagelist.txt
 

@@ -6,6 +6,7 @@
 # 适用规律：
 #   IMG_YYYYMMDD_HHMMSS.jpg / .JPG / .JPEG
 #   VIDEO_YYYYMMDD_HHMMSS.jpg
+#   IMG_<13位Unix时间戳>_YYYYMMDD_HHMMSS.jpg  （优先从本地时间部分提取）
 #
 # 用法：
 #   bash update_android_img.sh [imagelist.txt]
@@ -35,8 +36,21 @@ while IFS= read -r line; do
 
     filename="$(basename "$filepath")"
 
+    # 匹配 IMG_<13位Unix时间戳>_YYYYMMDD_HHMMSS（优先于标准格式，避免误提取时间戳前缀）
+    if [[ "$filename" =~ ^IMG_[0-9]{13}_([0-9]{4})([0-9]{2})([0-9]{2})_([0-9]{2})([0-9]{2})([0-9]{2})\. ]]; then
+        YEAR="${BASH_REMATCH[1]}"
+        MON="${BASH_REMATCH[2]}"
+        DAY="${BASH_REMATCH[3]}"
+        HOUR="${BASH_REMATCH[4]}"
+        MIN="${BASH_REMATCH[5]}"
+        SEC="${BASH_REMATCH[6]}"
+        DATETIME="${YEAR}:${MON}:${DAY} ${HOUR}:${MIN}:${SEC}"
+        echo "设置 $filepath  =>  $DATETIME"
+        exiftool -overwrite_original -DateTimeOriginal="$DATETIME" -FileModifyDate="$DATETIME" "$filepath"
+        (( count++ )) || true
+
     # 匹配 IMG_YYYYMMDD_HHMMSS 或 VIDEO_YYYYMMDD_HHMMSS
-    if [[ "$filename" =~ ^(IMG|VIDEO)_([0-9]{4})([0-9]{2})([0-9]{2})_([0-9]{2})([0-9]{2})([0-9]{2})\. ]]; then
+    elif [[ "$filename" =~ ^(IMG|VIDEO)_([0-9]{4})([0-9]{2})([0-9]{2})_([0-9]{2})([0-9]{2})([0-9]{2})\. ]]; then
         YEAR="${BASH_REMATCH[2]}"
         MON="${BASH_REMATCH[3]}"
         DAY="${BASH_REMATCH[4]}"

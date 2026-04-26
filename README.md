@@ -21,7 +21,7 @@ bash <脚本名>.sh [图片列表文件]
 生成图片列表示例（在 macOS / Linux 下）：
 
 ```bash
-find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | nl -ba > imagelist.txt
+find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | nl -ba > imagelist.txt
 ```
 
 ## 脚本说明
@@ -92,9 +92,9 @@ find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | nl -ba > 
 处理截图命名格式的图片。
 
 **适用格式：**
-- `ScreenShot_YYYYMMDD-HHMMSS.png`
+- `Screenshot_YYYYMMDD-HHMMSS.png`
 
-**示例：**`ScreenShot_20171015-211119.png` → `2017:10:15 21:11:19`
+**示例：**`Screenshot_20171015-211119.png` → `2017:10:15 21:11:19`
 
 ### `update_dir_date.sh`
 
@@ -115,7 +115,7 @@ find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | nl -ba > 
 
 ```bash
 # 1. 生成图片列表
-find /your/photo/dir -type f -iname "*.jpg" | nl -ba > imagelist.txt
+find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | nl -ba > imagelist.txt
 
 # 2. 按相机/App 类型依次运行脚本
 bash update_android_img.sh imagelist.txt

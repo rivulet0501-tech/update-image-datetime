@@ -83,6 +83,15 @@ find /your/photo/dir -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | nl -ba > 
 | `TIMESTAMP_pic.jpg` | `1557323094264_pic.jpg` | 毫秒时间戳 + `_pic` 后缀 |
 | 含13位时间戳的任意文件名 | `5804835_CP0FEDBMX3_1554825442402-v2-0.jpg` | 兜底规则 |
 
+### `update_screenshot.sh`
+
+处理截图命名格式的图片。
+
+**适用格式：**
+- `ScreenShot_YYYYMMDD-HHMMSS.png`
+
+**示例：**`ScreenShot_20171015-211119.png` → `2017:10:15 21:11:19`
+
 ### `update_dir_date.sh`
 
 当**文件名本身无法提取日期时间**时，回退到从**父目录名**提取日期。
@@ -108,6 +117,7 @@ find /your/photo/dir -type f -iname "*.jpg" | nl -ba > imagelist.txt
 bash update_android_img.sh imagelist.txt
 bash update_myxj.sh imagelist.txt
 bash update_selfiecity.sh imagelist.txt
+bash update_screenshot.sh imagelist.txt
 bash update_named_datetime.sh imagelist.txt
 bash update_unix_timestamp.sh imagelist.txt
 

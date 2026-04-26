@@ -35,8 +35,8 @@ while IFS= read -r line; do
 
     filename="$(basename "$filepath")"
 
-    # 匹配 ScreenShot_YYYYMMDD-HHMMSS.ext
-    if [[ "$filename" =~ ^ScreenShot_([0-9]{4})([0-9]{2})([0-9]{2})-([0-9]{2})([0-9]{2})([0-9]{2})\. ]]; then
+    # 匹配 Screenshot_YYYYMMDD-HHMMSS.ext
+    if [[ "$filename" =~ ^Screenshot_([0-9]{4})([0-9]{2})([0-9]{2})-([0-9]{2})([0-9]{2})([0-9]{2})\. ]]; then
         YEAR="${BASH_REMATCH[1]}"
         MON="${BASH_REMATCH[2]}"
         DAY="${BASH_REMATCH[3]}"

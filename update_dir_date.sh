@@ -100,8 +100,8 @@ while IFS= read -r line; do
 
     # 规则 2：祖父目录为 YYYY，父目录为 MM（两级合起来是 YYYY/MM）
     elif [[ "$parent" =~ ^([0-9]{2})$ && "$grandparent" =~ ^([0-9]{4})$ ]]; then
-        YEAR="${BASH_REMATCH[1]}"
-        MON="${parent}"
+        YEAR="$grandparent"
+        MON="$parent"
         DATETIME="${YEAR}:${MON}:01 00:00:00"
 
     # 规则 3：父目录名为 YYYYMMDD（8位纯数字）
